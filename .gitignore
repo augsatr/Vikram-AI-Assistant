@@ -1,0 +1,43 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+venv/
+.venv/
+
+# Environment
+.env
+
+# Voice samples (large binaries)
+voice/*.wav
+voice/*.mp3
+voice/*.webm
+voice/*.flac
+voice/*.ogg
+voice/*.mp4
+
+# Data
+data/
+
+# Debug / test scripts
+_debug_*.py
+_bench_*.py
+_test_*.py
+
+# Logs
+*.log
+*.tmp
+
+# IDE
+.vscode/
+.idea/
+
+# Binaries
+ffmpeg.exe
+*.exe
+
+# OS
+Thumbs.db
+.DS_Store
