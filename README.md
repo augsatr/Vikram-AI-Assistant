@@ -1,6 +1,6 @@
 <div align="center">
   <h1>🧠 Vikram AI Assistant</h1>
-  <p><em>A JARVIS-like intelligent voice assistant — 100% local, zero cloud dependencies</em></p>
+  <p><em>A JARVIS-like offline AI assistant — wake word, voice cloning, local LLM, FAISS memory, system control. Runs 100% locally, zero cloud.</em></p>
 
   <p>
     <img src="https://img.shields.io/badge/python-3.12-blue?logo=python&logoColor=white" alt="Python 3.12">
@@ -9,12 +9,13 @@
     <img src="https://img.shields.io/badge/whisper-tiny-ff69b4" alt="Whisper tiny">
     <img src="https://img.shields.io/badge/platform-windows-lightgrey" alt="Windows">
     <img src="https://img.shields.io/badge/status-beta-yellow" alt="Beta">
+    <img src="https://img.shields.io/badge/ai-jarvis_style-critical" alt="JARVIS">
   </p>
 
   <br>
+  <p><strong>🗣️ Say "hey jarvis" · 🧠 Think with local LLM · 🔊 Speak with cloned voice · 💾 Remember everything</strong></p>
+  <br>
 </div>
-
-Vikram is a desktop AI assistant that listens, thinks, speaks, and controls your PC. Inspired by JARVIS from Iron Man, it runs entirely offline using open-source models — no internet required after setup.
 
 ---
 
