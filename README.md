@@ -3,6 +3,7 @@
 > *A JARVIS-like intelligent voice assistant — runs 100% locally, no cloud required.*
 
 Vikram is a desktop AI assistant that listens, thinks, speaks, and controls your PC. Built with offline-first philosophy — everything runs on your machine using open-source models.
+<img src="https://giffiles.alphacoders.com/212/212508.gif" alt="">
 
 ---
 
