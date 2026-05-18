@@ -1,139 +1,134 @@
-# 🧠 Vikram AI Assistant
+<div align="center">
+  <h1>🧠 Vikram AI Assistant</h1>
+  <p><em>A JARVIS-like intelligent voice assistant — 100% local, zero cloud dependencies</em></p>
 
-> *A JARVIS-like intelligent voice assistant — runs 100% locally, no cloud required.*
-
-Vikram is a desktop AI assistant that listens, thinks, speaks, and controls your PC. Built with offline-first philosophy — everything runs on your machine using open-source models.
-<img src="https://giffiles.alphacoders.com/212/212508.gif" alt="">
+  <p>
+    <img src="https://img.shields.io/badge/python-3.12-blue?logo=python&logoColor=white" alt="Python 3.12">
+    <img src="https://img.shields.io/badge/license-MIT-green" alt="MIT License">
+    <img src="https://img.shields.io/badge/ollama-v0.24+-orange?logo=ollama" alt="Ollama">
+    <img src="https://img.shields.io/badge/whisper-tiny-ff69b4" alt="Whisper tiny">
+    <img src="https://img.shields.io/badge/platform-windows-lightgrey" alt="Windows">
+  </p>
+</div>
 
 ---
 
 ## ✨ Features
 
-| Capability | How it works |
-|-----------|--------------|
-| **Wake word** | OpenWakeWord — say "hey jarvis" to activate |
-| **Speech recognition** | OpenAI Whisper (tiny) — offline transcription |
-| **AI brain** | Ollama + TinyLlama / Qwen 2.5 7B — local LLM |
-| **Voice output** | Edge-TTS (neural) or XTTS v2 (voice cloning) |
-| **Memory** | FAISS vector database + sentence-transformers |
-| **Reminders** | In-memory timer with TTS alerts |
-| **System actions** | Open apps, control volume, shutdown PC |
-| **Notes** | Save, search, and recall notes |
+| Capability | Engine | Description |
+|-----------|--------|-------------|
+| 🎤 **Wake Word** | OpenWakeWord | Say *"hey jarvis"* to activate |
+| 🗣️ **Speech-to-Text** | OpenAI Whisper (tiny) | Offline transcription, CPU-optimized |
+| 🧠 **AI Brain** | Ollama + TinyLlama / Qwen 2.5 | Local LLM reasoning |
+| 🔊 **Voice Output** | Edge-TTS / XTTS v2 | Neural voices or custom voice cloning |
+| 💾 **Memory** | FAISS + sentence-transformers | Semantic search across conversations |
+| ⏰ **Reminders** | In-memory scheduler | Voice-triggered timer alerts |
+| 🖥️ **System Control** | PyAutoGUI | Launch apps, volume, shutdown |
+| 📝 **Notes** | Vector storage | Save, search, and recall notes |
 
 ---
 
 ## 🚀 Quick Start
 
-### 1. Install dependencies
+### Prerequisites
+
+- **Windows** (10/11)
+- **Python 3.12+**
+- **Ollama** ([download](https://ollama.com))
+
+### 1. Clone & install
 
 ```bash
+git clone https://github.com/augsatr/Vikram-AI-Assistant.git
+cd Vikram-AI-Assistant
 pip install -r requirements.txt
 ```
 
-### 2. Install & start Ollama
-
-Download from [ollama.com](https://ollama.com), then:
+### 2. Pull an LLM
 
 ```bash
 ollama pull tinyllama
 ollama serve
 ```
 
-### 3. Run Vikram
+### 3. Launch Vikram
 
 ```bash
 vikram.bat
 ```
 
-Choose **console mode** (`c`) to type commands, or **voice mode** (`v`) for hands-free.
+Choose **console mode** (`c`) to type commands, or **voice mode** (`v`) for wake-word activated interaction.
 
 ---
 
-## 🎤 Voice Cloning (Madara Uchiha)
+## 🎤 Voice Cloning
 
-Vikram can clone any voice from a short audio sample:
+Vikram can clone any voice from a short audio sample — including **Madara Uchiha's** voice:
 
-1. Place a `.wav` file in the `voice/` folder
-2. During setup, choose **voice cloning**
-3. XTTS v2 generates speech in the cloned voice
+1. Place a `.wav` file in `voice/`
+2. During setup, enable **voice cloning**
+3. XTTS v2 generates responses in the cloned voice
 
-> **Note:** XTTS v2 runs on CPU and takes ~30s per response. For daily use, Edge-TTS (instant) is recommended.
+> **Note:** XTTS v2 runs on CPU (~30s per response). For daily use, Edge-TTS neural voices are recommended for responsiveness.
 
 ---
 
 ## 🧠 Architecture
 
 ```
-vikram.py          →  Main entry point
-modules/
-├── wake_word.py   →  Voice activity detection
-├── stt.py         →  Whisper speech-to-text
-├── brain.py       →  Ollama LLM interaction
-├── tts.py         →  Text-to-speech (Edge-TTS / XTTS v2)
-├── actions.py     →  System control
-└── memory.py      →  FAISS vector memory + reminders
-config.py          →  Model auto-detection & settings
-personality.txt    →  JARVIS-like system prompt
+vikram.py              # Entry point — orchestrates all modules
+├── modules/
+│   ├── wake_word.py   # OpenWakeWord voice activity detection
+│   ├── stt.py         # Whisper speech-to-text
+│   ├── brain.py       # Ollama LLM interaction
+│   ├── tts.py         # Edge-TTS / XTTS v2 speech synthesis
+│   ├── actions.py     # PyAutoGUI system control
+│   └── memory.py      # FAISS vector DB + reminders
+├── config.py           # Auto-detection of available models
+├── personality.txt     # JARVIS-style system prompt
+├── voice/              # Voice cloning samples
+└── data/               # FAISS index + notes storage
 ```
 
 ---
 
 ## ⚙️ Configuration
 
-| Variable | Default | Purpose |
-|----------|---------|---------|
-| `OLLAMA_MODEL` | `qwen2.5` (auto-fallsback) | LLM model name |
-| `OLLAMA_HOST` | `http://localhost:11434` | Ollama server |
-| `VIKRAM_NAME` | `Vikram` | Assistant name |
-| `AUDIO_DEVICE_INDEX` | `-1` (default mic) | Microphone index |
+| Variable | Default | Description |
+|----------|---------|-------------|
+| `OLLAMA_MODEL` | `qwen2.5` (auto-fallback) | LLM model name |
+| `OLLAMA_HOST` | `http://localhost:11434` | Ollama API endpoint |
+| `VIKRAM_NAME` | `Vikram` | Assistant identity name |
+| `AUDIO_DEVICE_INDEX` | `-1` (system default) | Microphone device index |
+| `WAKE_WORD_SENSITIVITY` | `0.5` | Detection sensitivity |
 
-Set these in `.env` or `config.py`.
+Copy `.env.example` to `.env` and adjust as needed.
 
 ---
 
 ## 🛠 Tech Stack
 
-- **Python 3.12** — Core language
-- **Ollama** — Local LLM server
-- **Whisper** — Offline speech recognition
-- **XTTS v2 / Edge-TTS** — Voice synthesis
-- **FAISS** — Vector similarity search
-- **Sentence-Transformers** — Text embeddings
-- **PyAutoGUI** — System control
-
----
-
-## 📦 Project Structure
-
-```
-Vikram/
-├── vikram.py              # Main assistant
-├── modules/
-│   ├── wake_word.py       # OpenWakeWord detection
-│   ├── stt.py             # Whisper STT
-│   ├── brain.py           # Ollama LLM
-│   ├── tts.py             # TTS output
-│   ├── actions.py         # System actions
-│   └── memory.py          # FAISS memory
-├── config.py              # Configuration
-├── personality.txt        # System prompt
-├── voice/                 # Voice samples
-├── data/                  # Memory storage
-├── requirements.txt       # Dependencies
-├── vikram.bat             # Launcher
-└── setup.bat              # One-time setup
-```
+| Technology | Role |
+|-----------|------|
+| [Python 3.12](https://python.org) | Core runtime |
+| [Ollama](https://ollama.com) | Local LLM orchestration |
+| [Whisper](https://github.com/openai/whisper) | Offline speech recognition |
+| [XTTS v2](https://github.com/coqui-ai/TTS) | Voice cloning synthesis |
+| [Edge-TTS](https://github.com/rany2/edge-tts) | Cloud neural TTS |
+| [FAISS](https://github.com/facebookresearch/faiss) | Vector similarity search |
+| [Sentence-Transformers](https://www.sbert.net) | Text embeddings |
+| [PyAutoGUI](https://github.com/asweigart/pyautogui) | Desktop automation |
 
 ---
 
 ## 📄 License
 
-MIT
+Distributed under the **MIT License**. See [`LICENSE`](LICENSE) for details.
 
 ---
 
 ## 👨‍💻 Developer
 
-Created by [augsatr](https://github.com/augsatr)
+**Sohan** — [@augsatr](https://github.com/augsatr)
 
-*"A true shinobi never gives up, and neither does Vikram."*
+> *"A true shinobi never gives up, and neither does Vikram."*
