@@ -15,7 +15,7 @@
 </div>
 
 Vikram is a desktop AI assistant that listens, thinks, speaks, and controls your PC. Inspired by JARVIS from Iron Man, it runs entirely offline using open-source models — no internet required after setup.
-
+<img src="https://giffiles.alphacoders.com/212/212508.gif" alt="">
 ---
 
 ## 📋 Table of Contents
